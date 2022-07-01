@@ -1,4 +1,5 @@
 using namespace std;
+
 class User
 {
 private:
@@ -9,8 +10,8 @@ private:
 	void password_is_hard();
 
 public:
-
-	User(string name, string password);
+	User() {}
+	User get_in_console();
 
 	void login(string password);
 
@@ -21,26 +22,8 @@ public:
 		return os << u.name << '\n';
 	}
 };
-// User u;
-// cout << u;
-
-// User u;
-// u.name = "ali";
-// u.password = "12345678";
-
-// User u = User("ali", "12345678");
 
 
-// User u;
-// u.name = "ali";
-
-User::User(string name, string password)
-{
-	this->password = password;
-	password_is_hard();
-	this->name = name;
-	this->is_login = true;
-}
 
 void User::password_is_hard()
 {
@@ -59,3 +42,18 @@ void User::password_is_hard()
 	throw string("your password is too weak");
 }
 
+void User::logout()
+{
+	is_login = false;
+}
+
+User User::get_in_console()
+{
+	cout << "enter your name:";
+	cin >> this->name;
+	cout << "enter your password:";
+	cin >> this->password;
+	password_is_hard();
+	this->is_login = true;
+	return *this;
+}
