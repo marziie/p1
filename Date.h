@@ -9,6 +9,8 @@ public:
 
 	Date(int year, int month, int day);
 
+	Date(string s);
+
 	friend ostream& operator<<(ostream& os, Date const& d)
 	{
 		return os << d.year << '/' << d.month << '/' << d.day << '\n';
@@ -23,3 +25,8 @@ Date::Date(int year, int month, int day)
 	this->day = day;
 }
 
+Date::Date(string s)
+{
+
+	// throw string("the date is not valid")
+}
