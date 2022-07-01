@@ -12,6 +12,7 @@ private:
     bool grace;
     vector<string> refrences;
     map<string, int> words;
+    int count_all_words = 0;
 
     void editor_standard();
 
@@ -79,8 +80,16 @@ Paper Paper::get_in_console()
 
 int Paper::persent_simile(Paper b)
 {
-    // todo
-    return 0;
+    long double simple = 0;
+    for (auto &i : this->words)
+    {
+        if (b.words[i->first] != 0)
+            simple += 2 * min(i->second, b.words[i->first]);
+    }
+    long double count_all = this->count_all_words + b.count_all_words;
+    simple /= count_all;
+
+    return int(simple * 100);
 }
 
 void Paper::editor_standard()
@@ -159,14 +168,13 @@ void Paper::set_map_worlds()
 
 void Paper::zigma_words__50word()
 {
-    int ans = 0;
     for (auto it = words.begin(); it != words.end(); it++)
     {
         if (it->second > 50)
             throw string("a word in text use more 50 fold");
-        ans += it->second;
+        count_all_words += it->second;
     }
-    if (ans < 100 || ans > 5000)
+    if (count_all_words < 100 || count_all_words > 5000)
         throw string("namber of words in text is Unacceptable");
 }
 
