@@ -1,20 +1,21 @@
 #include <iostream>
 #include <vector>
-#include "User.h"
-#include "Paper.h"
 using namespace std;
 
-class A{
+class A
+{
 public:
-    static void f() {
-        cout << "hello\n";
+    int uid;
+    A(){};
+    void get_in_console()
+    {
+        cin >> uid;
     }
 };
 
 int main()
 {
-    // User u;
-    // u.get_password();
+    vector<A> vec;
+    vec.push_back(A().get_in_console());
 
-    A::f();
 }

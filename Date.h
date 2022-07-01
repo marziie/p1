@@ -7,6 +7,8 @@ public:
 	int month;
 	int day;
 
+    Date(){}
+
 	Date(int year, int month, int day);
 
 	Date(string s);
@@ -25,8 +27,32 @@ Date::Date(int year, int month, int day)
 	this->day = day;
 }
 
-Date::Date(string s)
+Date::Date(string a)
 {
+    int n = 0;
+    for (auto &i: a)
+    {
+        if (i == '/')
+            n++;
+        else if ('0' > i || i > '9')
+            throw string("the date is not valid");
+    }
+    if (n != 2)
+        throw string("the date is not valid");
+    n = 0;
+    int m[3] = {0,0,0};
+    for(auto &i: a)
+    {
+        if (i != '/')
+        {
+            m[n] *= 10;
+            m[n] += i - '0';
+        }
+        else
+            n++;
 
-	// throw string("the date is not valid")
+    }
+    this->year = m[0];
+    this->month = m[1];
+    this->day = m[2];
 }
