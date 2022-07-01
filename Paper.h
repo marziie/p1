@@ -83,8 +83,8 @@ int Paper::persent_simile(Paper b)
     long double simple = 0;
     for (auto &i : this->words)
     {
-        if (b.words[i->first] != 0)
-            simple += 2 * min(i->second, b.words[i->first]);
+        if (b.words[i.first] != 0)
+            simple += 2 * min(i.second, b.words[i.first]);
     }
     long double count_all = this->count_all_words + b.count_all_words;
     simple /= count_all;
